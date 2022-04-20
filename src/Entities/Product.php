@@ -29,11 +29,7 @@ class Product
 
     public function __set($variable, $value)
     {
-
-        if ($variable == 'attributes') {
-            $value = ArrayCast::get($this->$variable) + $value;
-        } 
-
+        
         return $this->$variable = $this->casts[$variable]::set($value);
     }
 
