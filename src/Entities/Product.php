@@ -29,14 +29,18 @@ class Product
 
     public function __set($variable, $value)
     {
-        
-        return $this->$variable = $this->casts[$variable]::set($value);
+        if (isset($this->casts[$variable])) {
+            return $this->$variable = $this->casts[$variable]::set($value);
+        }
     }
 
     public function __get($variable)
     {
 
-        return $this->casts[$variable]::get($this->$variable);
+        if (isset($this->casts[$variable])) {
+            return $this->casts[$variable]::get($this->$variable);
+        }
+        
     }
 
 
